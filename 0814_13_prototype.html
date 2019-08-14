@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>prototype</title>
+</head>
+
+<body>
+    <div id="info"></div>
+
+    <script>
+        let info = document.querySelector('#info');
+
+        function Person(name, age) {
+            // 需用function定義
+            this.name = name;
+            this.age = age;
+            this.toJson = function () {
+                return JSON.stringify({
+                    name: this.name,
+                    age: this.age,
+                });
+            };
+            console.log(this);
+        }
+
+        Person.prototype.toString = function () {
+            // prototype擴充功能
+            return JSON.stringify({
+                name: this.name,
+                age: this.age,
+            });
+        };
+
+        var p1 = new Person('peter', 20);
+        // 用new建立物件
+        info.innerHTML = p1.toJson() + '<br>';
+        info.innerHTML += p1 + '<br>';
+
+    </script>
+</body>
+
+</html>

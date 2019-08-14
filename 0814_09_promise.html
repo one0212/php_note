@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise</title>
+</head>
+
+<body>
+    <div id="info"></div>
+
+    <script>
+        let info = document.querySelector('#info')
+        let promise1 = new Promise(function (resolve, reject) {
+            info.innerHTML += '1<br>';
+
+            setTimeout(function () {
+                info.innerHTML += '2<br>';
+                resolve('hello');
+                // resolve會先傳值給result執行後才會回傳2
+            }, 1500);
+
+            info.innerHTML += '3<br>';
+        });
+
+        // resolve會將值傳給result, 再輸出
+        promise1.then(function (resolve) {
+            info.innerHTML += `${resolve}<br>`;
+        });
+
+        // promise1.catch(function (reject) {
+        //     info.innerHTML += `${reject}<br>`;
+        // });
+        // catch  reject則沒有回傳的值
+
+        //結果為1 3 [object Promise]  1.5秒後 => 2.hello   
+        info.innerHTML += `${promise1}<br>`;
+    </script>
+</body>
+
+</html>

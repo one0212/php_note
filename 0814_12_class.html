@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="info"></div>
+
+    <script>
+        let info = document.querySelector('#info');
+
+
+        class Animal {
+            constructor() {
+            }
+            eat() {
+                return 'eat something';
+            }
+        }
+
+        class Fish extends Animal {
+            swim() {
+                return 'fish swims';
+            }
+        }
+
+        class Cat extends Animal {
+            mow() {
+                return 'mow mow';
+            }
+        }
+
+        class Whale extends Animal {
+            swim() {
+                return 'whale swims';
+            }
+        }
+
+        let animals = [new Fish(), new Whale(), new Cat()];
+
+        animals.forEach(function (ani) {
+            info.innerHTML += ani + '<br>';
+            if (ani.swim) {
+                info.innerHTML += ani.swim() + '<br>';
+            }
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
