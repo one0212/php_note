@@ -1,0 +1,12 @@
+{
+    "name": "student/php_note",
+    "authors": [
+        {
+            "name": "one0212",
+            "email": "feliciajiang12@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.8"
+    }
+}
