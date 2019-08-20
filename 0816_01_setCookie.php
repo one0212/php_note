@@ -16,6 +16,7 @@
         <?php
         echo $_COOKIE['myc']
         ?>
+        <!-- 讀取用$_COOKIE 讀取用戶端送過來的cookie -->
         <!-- 第一次會讀取不到cookie -->
 
     </div>
