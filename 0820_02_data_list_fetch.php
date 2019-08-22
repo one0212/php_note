@@ -3,6 +3,8 @@ require __DIR__. '/__connect_db.php';
 $page_name = '0820_02_data_list';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+// 用戶自己決定自己要看哪一頁 所以是從get方式過來
+// 用戶有設定頁數則轉成整數頁 如果沒有設定則預設頁數為第一頁
 
 $per_page = 10; // 每一頁要顯示幾筆
 
@@ -13,14 +15,15 @@ $t_sql = "SELECT COUNT(1) FROM `address_book`";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; // 拿到總筆數
 
 $totalPages = ceil($totalRows/$per_page); // 取得總頁數
+// 總筆數/一頁最多幾筆 = 總頁數(無條件進位)
 echo "$totalRows <br>";
 echo "$totalPages <br>";
 exit;
 
-
+// $sql為要顯示的資料
 $sql = sprintf("SELECT * FROM `address_book` ORDER BY `sid` DESC LIMIT %s, %s",
-        ($page-1)*$per_page,
-            $per_page
+        ($page-1)*$per_page, //索引值：頁數-1*一頁幾筆 從哪一個索引值開始呈現 與pk無關 因升幂與降冪呈現不同
+            $per_page // 一頁呈現最多幾筆
 );
 
 $stmt = $pdo->query("SELECT * FROM `address_book` ORDER BY `sid` DESC");
@@ -62,4 +65,4 @@ $stmt = $pdo->query("SELECT * FROM `address_book` ORDER BY `sid` DESC");
     </table>
 </div>
 </div>
-<?php include __DIR__. '/__foot.php' ?>
+<?php include __DIR__. '/__footer.php' ?>

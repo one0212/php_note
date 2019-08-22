@@ -44,4 +44,4 @@ $rows = $stmt->fetchAll();
     </table>
 </div>
 </div>
-<?php include __DIR__. '/__foot.php' ?>
+<?php include __DIR__. '/__footer.php' ?>
