@@ -4,9 +4,11 @@ require __DIR__. '/__connect_db.php';
 $stmt = $pdo->query("SELECT * FROM `address_book` ORDER BY `sid` DESC");
 // query()為執行SQL的指令
 // order by 依照流水號降冪排序
+// 中文一定要加`backtick`
 
 $rows = $stmt->fetchAll();
 // stmt為資料庫格式 將其轉換成array存入 $rows
+// 拿到的是索引式陣列
 
 ?>
 <?php include __DIR__. '/__head.php' ?>
@@ -33,7 +35,9 @@ $rows = $stmt->fetchAll();
             <td><?= $r['email'] ?></td>
             <td><?= $r['mobile'] ?></td>
             <td><?= $r['birthday'] ?></td>
+            <!-- 將欄位名稱當做索引值 -->
            <!-- address在資料表中為null -->
+           <!-- 與連線設定：PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,有關係 -->
         </tr>
         <?php endforeach; ?>
         </tbody>

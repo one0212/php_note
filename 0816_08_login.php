@@ -9,15 +9,18 @@ $accounts = [
     'one3' => '03',
     'one4' => '04',
 ];
+// 沒有使用資料庫的方式
 
 if(isset($_POST['account'])){
 // 判斷表單內account有沒有值
 
     if(isset($accounts[$_POST['account']])){
-        // 密碼是否有值
+        // $accounts[$_POST['account']] 輸入的帳號丟到陣列中, 取得對應到密碼 => 判斷密碼是否有值
+        // 有的話代表帳號是正確的
         if($_POST['password']==$accounts[$_POST['account']]){
-            // 密碼配對
+            // 密碼配對  輸入進來的密碼 == 儲存在陣列中的密碼
             $_SESSION['user'] = $_POST['account'];
+            // 如果密碼正確才將帳號放入session中
         }
     }
 
