@@ -19,6 +19,13 @@
             <li class="nav-item  <?= $page_name=='0820_02_data_list' ? 'active' : '' ?>">
               <a class="nav-link" href="0820_02_data_list.php">資料列表</a>
             </li>
+
+            <li class="nav-item  <?= $page_name=='0822_fetch_data_insert' ? 'active' : '' ?>">
+              <a class="nav-link" href="0822_fetch_data_insert.php">新增資料</a>
+            </li>
+            <li class="nav-item  <?= $page_name=='0822_ajax_data_list2' ? 'active' : '' ?>">
+              <a class="nav-link" href="0822_ajax_data_list2.php">資料列表2(Ajax)</a>
+            </li>
             
             <li class="nav-item <?= $page_name=='0820_04_page2' ? 'active' : '' ?>">
               <a class="nav-link" href="0820_04_page2.php">Page2</a>

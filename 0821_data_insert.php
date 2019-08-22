@@ -14,7 +14,7 @@ $page_title = '新增資料';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
-                    <form action="0821_data_insert_api.php" method="post">
+                    <form name="form1"  onsubmit="return checkForm()">
                         <div class="form-group">
                             <label for="name">姓名</label>
                             <input type="text" class="form-control" id="name" name="name" >
@@ -40,19 +40,13 @@ $page_title = '新增資料';
                             <input type="text" class="form-control" id="address" name="address" >
                             <small id="addressHelp" class="form-text"></small>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                     </form>
                 </div>
             </div>
 
         </div>
     </div>
-
-
-
-
-
-
 </div>
 </div>
 <?php include __DIR__. '/__footer.php' ?>
