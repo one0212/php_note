@@ -1,6 +1,6 @@
 <?php
 require __DIR__. '/__connect_db.php';
-$page_name = '0820_02_data_list';
+$page_name = '0820_02_data_list_fetch';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 // 用戶自己決定自己要看哪一頁 所以是從get方式過來

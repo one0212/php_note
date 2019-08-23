@@ -14,8 +14,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
            
-            <li class="nav-item  <?= $page_name=='0820_02_data_list' ? 'active' : '' ?>">
-              <a class="nav-link" href="0820_02_data_list.php">資料列表</a>
+            <li class="nav-item  <?= $page_name=='0820_02_data_list_fetch' ? 'active' : '' ?>">
+              <a class="nav-link" href="0820_02_data_list_fetch.php">資料列表</a>
             </li>
 
             <li class="nav-item  <?= $page_name=='0822_fetch_data_insert' ? 'active' : '' ?>">
