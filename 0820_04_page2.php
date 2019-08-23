@@ -1,5 +1,9 @@
 <?php
-$page_name = '0820_04_page2';
+if(! isset($_SESSION)){
+    session_start();
+}
+
+
 
 ?>
 <?php include __DIR__. '/__head.php' ?>

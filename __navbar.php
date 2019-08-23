@@ -13,9 +13,7 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li> -->
+           
             <li class="nav-item  <?= $page_name=='0820_02_data_list' ? 'active' : '' ?>">
               <a class="nav-link" href="0820_02_data_list.php">資料列表</a>
             </li>
@@ -30,6 +28,20 @@
             <li class="nav-item <?= $page_name=='0820_04_page2' ? 'active' : '' ?>">
               <a class="nav-link" href="0820_04_page2.php">Page2</a>
             </li>
+          </ul>
+          <ul class="navbar-nav">
+          <?php if(isset($_SESSION['loginUser'])): ?>
+                    <li class="nav-item ">
+                        <a class="nav-link"><?= $_SESSION['loginUser']['nickname'] ?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="0823_logout.php">登出</a>
+                    </li>
+                <?php else: ?>
+            <li class="nav-item">
+              <a class="nav-link" href="0823_login.php">登入</a>
+            </li>
+            <?php endif; ?>
           </ul>
         
         </div>

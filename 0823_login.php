@@ -1,22 +1,7 @@
 <?php
-require __DIR__. '/__admin_required.php';
 require __DIR__. '/__connect_db.php';
-$page_name = '0822_data_edit';
-$page_title = '編輯資料';
-
-$sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
-
-if(empty($sid)) {
-    header('Location: 0820_02_data_list.php');
-    exit;
-}
-
-$sql = "SELECT * FROM `address_book` WHERE `sid`= $sid";
-$row = $pdo->query($sql)->fetch();
-if(empty($row)) {
-    header('Location: 0820_02_data_list.php');
-    exit;
-}
+$page_name = 'login';
+$page_title = '登入';
 
 ?>
 <?php include __DIR__. '/__head.php' ?>
@@ -32,41 +17,25 @@ if(empty($row)) {
 <div class="container">
 <div style="margin-top: 2rem;">
 
-    <div class="alert alert-primary" role="alert" id="info-bar" style="display: none"></div>
+    <div class="alert alert-primary" role="alert" id="info_bar" style="display: none"></div>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">編輯資料</h5>
+                    <h5 class="card-title">登入</h5>
                     <form name="form1"  onsubmit="return checkForm()">
                     <!-- 這邊不寫post方式 呈現在js中 -->
-                    <input type="hidden" name="sid" value="<?= $row['sid'] ?>">
                         <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?= htmlentities($row['name']) ?>">
-                            <small id="nameHelp" class="form-text"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">電子信箱</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?= htmlentities($row['email'])?>">
+                            <label for="email">帳號(電子信箱)</label>
+                            <input type="text" class="form-control" id="email" name="email" >
                             <small id="emailHelp" class="form-text"></small>
                         </div>
                         <div class="form-group">
-                            <label for="birthday">生日</label>
-                            <input type="text" class="form-control" id="birthday" name="birthday" value="<?= htmlentities($row['birthday'])?>">
-                            <small id="birthdayHelp" class="form-text"></small>
+                            <label for="password">密碼</label>
+                            <input type="password" class="form-control" id="password" name="password" >
+                            <small id="passwordHelp" class="form-text"></small>
                         </div>
-                        <div class="form-group">
-                            <label for="mobile">手機</label>
-                            <input type="text" class="form-control" id="mobile" name="mobile" value="<?= htmlentities($row['mobile'])?>">
-                            <small id="mobileHelp" class="form-text"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">地址(選填)</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?= htmlentities($row['address'])?>">
-                            <small id="addressHelp" class="form-text"></small>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submit_btn">修改</button>
+                        <button type="submit" class="btn btn-primary" id="submit_btn">登入</button>
                     </form>
                 </div>
             </div>
@@ -77,24 +46,14 @@ if(empty($row)) {
 </div>
 <script>
 
-    let info_bar = document.querySelector('#info-bar');
+    let info_bar = document.querySelector('#info_bar');
     const submit_btn = document.querySelector('#submit_btn');
     let i, s, item;
-        const required_fields = [
-            {
-                id: 'name',
-                pattern: /^\S{2,}/,
-                info: '請填寫正確的姓名'
-            },
+    const required_fields = [
             {
                 id: 'email',
                 pattern: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
                 info: '請填寫正確的 email 格式'
-            },
-            {
-                id: 'mobile',
-                pattern: /^09\d{2}\-?\d{3}\-?\d{3}$/,
-                info: '請填寫正確的手機號碼格式'
             },
         ];
 
@@ -141,39 +100,27 @@ if(empty($row)) {
             }
         }
 
-        /*
-
-        if(name.value.length<2){
-            name.style.border = '1px solid red';
-            name.nextElementSibling.innerText = '請填寫正確的姓名';
-            return false;
-        }
-
-        if(! mobilePattern.test(mobile.value)){
-            mobile.style.border = '1px solid red';
-            mobile.nextElementSibling.innerText = '請填寫正確的手機格式';
-            isPass = false;
-        }
-
-        */
 
 
         let formData = new FormData(document.form1);
         if(isPass) {
-        fetch('0823_data_edit_api.php', {
+        fetch('0823_login_api.php', {
             // fetch(發送ajax給誰, {用什麼方式發送, http的body呈現什麼})
             method: 'POST',
             body: formData,
         })
-            .then(response => {
+            .then(response=>{
                 return response.json();
             })
-            .then(json => {
+            .then(json=>{
                 console.log(json);
                 info_bar.style.display = 'block';
                 info_bar.innerHTML = json.info;
                 if(json.success){
                     info_bar.className = 'alert alert-success';
+                    setTimeout(function(){
+                        location.href = '0820_04_page2.php';
+                            }, 1000);
                 } else {
                     info_bar.className = 'alert alert-danger';
                 }

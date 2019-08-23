@@ -1,4 +1,5 @@
 <?php
+require __DIR__. '/__admin_required.php';
 require __DIR__. '/__connect_db.php';
 $page_name = '0822_fetch_data_insert';
 $page_title = '新增資料';
@@ -17,7 +18,7 @@ $page_title = '新增資料';
 <div class="container">
 <div style="margin-top: 2rem;">
 
-    <div class="alert alert-primary" role="alert" id="info-bar" style="display: none"></div>
+    <div class="alert alert-primary" role="alert" id="info_bar" style="display: none"></div>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -47,10 +48,10 @@ $page_title = '新增資料';
                         </div>
                         <div class="form-group">
                             <label for="address">地址(選填)</label>
-                            <input type="text" class="form-control" id="address" name="address" >
+                            <textarea id="address" name="address" class="form-control" cols="30" rows="10"></textarea>
                             <small id="addressHelp" class="form-text"></small>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="submit_btn">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submit_btn">新增</button>
                     </form>
                 </div>
             </div>
@@ -144,7 +145,7 @@ $page_title = '新增資料';
 
         let formData = new FormData(document.form1);
         if(isPass) {
-        fetch('0821_data_insert_api.php', {
+        fetch('0821_fetch_data_insert_api.php', {
             // fetch(發送ajax給誰, {用什麼方式發送, http的body呈現什麼})
             method: 'POST',
             body: formData,
