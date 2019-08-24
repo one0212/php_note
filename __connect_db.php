@@ -23,7 +23,7 @@ $pdo_options = [
 $pdo = new PDO($dsn, $db_user, $db_pass, $pdo_options);
 // $pdo表連線的物件 PDO為一個類型 php data objects
 
-if(! isset($_SESSION)){
+if(!isset($_SESSION)){
     session_start();
 }
 

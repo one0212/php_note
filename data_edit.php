@@ -1,7 +1,7 @@
 <?php
 require __DIR__. '/__admin_required.php';
 require __DIR__. '/__connect_db.php';
-$page_name = '0822_data_edit';
+$page_name = 'data_edit';
 $page_title = '編輯資料';
 
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
@@ -160,7 +160,7 @@ if(empty($row)) {
 
         let formData = new FormData(document.form1);
         if(isPass) {
-        fetch('0823_data_edit_api.php', {
+        fetch('data_edit_api.php', {
             // fetch(發送ajax給誰, {用什麼方式發送, http的body呈現什麼})
             method: 'POST',
             body: formData,
