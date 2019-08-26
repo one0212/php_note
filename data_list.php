@@ -23,10 +23,12 @@ if($page < 1){
     header('Location: data_list.php');
     exit;
 }
+// 判斷頁數如果小於1則回到原檔首頁
 if($page > $totalPages){
     header('Location: data_list.php?page='. $totalPages);
     exit;
 }
+// 超過頁數則直接轉到最末頁
 
 // $sql為要顯示的資料
 $sql = sprintf("SELECT * FROM `address_book` ORDER BY `sid` DESC LIMIT %s, %s",  
@@ -56,8 +58,10 @@ $stmt = $pdo->query($sql);
             <?php
             $p_start = $page-5;
             $p_end = $page+5;
+            // 頁碼只顯是五頁
             for($i=$p_start; $i<=$p_end; $i++):
                 if($i<1 or $i>$totalPages) continue;
+                // 頁碼超出範圍則跳過進到下次回迴圈
                 ?>
             <li class="page-item <?= $i==$page ? 'active' : '' ?>">
                 <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
@@ -97,6 +101,7 @@ $stmt = $pdo->query($sql);
                 <td><?= htmlentities($r['mobile']) ?></td>
                 <td><?= htmlentities($r['birthday']) ?></td>
            <!-- address在資料表中為null -->
+           <!-- htmlentities()為php的function 會做html跳脫 防範xss攻擊 -->
                 <td>
                     <a href="data_edit.php?sid=<?= $r['sid'] ?>"><i class="fas fa-edit"></i></a>
                 </td>

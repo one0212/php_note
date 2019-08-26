@@ -147,10 +147,13 @@ $page_title = '新增資料';
         if(isPass) {
         fetch('data_insert_api.php', {
             // fetch(發送ajax給誰, {用什麼方式發送, http的body呈現什麼})
+            // http request文件發送出去時 資料會放在body裡面
             method: 'POST',
             body: formData,
         })
+            // 
             .then(response=>{
+                // 可以透過 blob(), json(), text() 轉成可用的資訊
                 return response.json();
             })
             .then(json=>{
