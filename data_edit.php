@@ -7,14 +7,14 @@ $page_title = '編輯資料';
 $sid = isset($_GET['sid']) ? intval($_GET['sid']) : 0;
 
 if(empty($sid)) {
-    header('Location: 0820_02_data_list.php');
+    header('Location: data_list.php');
     exit;
 }
 
 $sql = "SELECT * FROM `address_book` WHERE `sid`= $sid";
 $row = $pdo->query($sql)->fetch();
 if(empty($row)) {
-    header('Location: 0820_02_data_list.php');
+    header('Location: data_list.php');
     exit;
 }
 
