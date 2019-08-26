@@ -80,7 +80,6 @@ $stmt = $pdo->query($sql);
         <thead>
         <tr>
             <th scope="col"><i class="fas fa-trash-alt"></i></th>
-            <th scope="col">#</th>
             <th scope="col">姓名</th>
             <th scope="col">電子郵箱</th>
             <th scope="col">手機</th>
